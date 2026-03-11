@@ -121,8 +121,8 @@ Bilibili教程开发中
 克隆本仓库：
 
 ```bash
-git clone [https://github.com/Miyawa-x/Auto_StuWifi](https://github.com/Miyawa-x/Auto_StuWifi)
-cd YourRepository
+git clone https://github.com/Miyawa-x/Auto_StuWifi
+cd Auto_StuWifi
 
 ```
 
