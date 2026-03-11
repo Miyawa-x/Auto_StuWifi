@@ -1,4 +1,4 @@
-# 🚀 MacOS SRun Auto-Login | 西交大深澜无感认证引擎
+# 🚀 MacOS SRun Auto-Login | 深澜无感认证
 
 [English Version](#english-version) | [中文版](#chinese-version)
 
