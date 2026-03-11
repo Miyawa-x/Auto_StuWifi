@@ -37,8 +37,8 @@ A lightning-fast, zero-dependency bash script for automatic authentication on th
 #### 1. Configuration
 Clone this repository and create your local configuration file from the template to prevent accidentally committing your credentials:
 ```bash
-git clone [https://github.com/Miyawa-x/Auto_StuWifi](https://github.com/Miyawa-x/Auto_StuWifi)
-cd YourRepository
+git clone https://github.com/Miyawa-x/Auto_StuWifi
+cd Auto_StuWifi
 
 ```
 
@@ -55,8 +55,8 @@ PASSWORD='YourPassword'
 Grant execution permission and run the script:
 
 ```bash
-chmod +x srun_login.sh
-./srun_login.sh
+chmod +x macos_bash_wifi.sh
+./macos_bash_wifi.sh
 
 ```
 
@@ -139,8 +139,8 @@ PASSWORD='你的密码'
 赋予执行权限并启动：
 
 ```bash
-chmod +x srun_login.sh
-./srun_login.sh
+chmod +x macos_bash_wifi.sh
+./macos_bash_wifi.sh
 
 ```
 
