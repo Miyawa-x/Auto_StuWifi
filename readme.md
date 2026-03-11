@@ -1,13 +1,13 @@
 # 🚀 MacOS SRun Auto-Login | 西交大深澜无感认证引擎
 
-[English Version](english-version) | [中文版](chinese-version)
+[English Version](#english-version) | [中文版](#chinese-version)
 
 ---
 
 <a id="english-version"></a>
 ## 🌐 English Version
 
-A lightning-fast, zero-dependency bash script for automatic authentication on the SRun Gateway (specifically tailored for XJTU-STUwifi). It silently bypasses the Apple Captive Portal Assistant, auto-discovers active gateways, and achieves millisecond-level login without any manual intervention.
+A lightning-fast, zero-dependency bash script for automatic authentication on the SRun Gateway (specifically tailored for SRun-STUwifi). It silently bypasses the Apple Captive Portal Assistant, auto-discovers active gateways, and achieves millisecond-level login without any manual intervention.
 
 ### 📑 Table of Contents (English)
 - [Features](#features-en)
@@ -37,16 +37,15 @@ A lightning-fast, zero-dependency bash script for automatic authentication on th
 #### 1. Configuration
 Clone this repository and create your local configuration file from the template to prevent accidentally committing your credentials:
 ```bash
-git clone [https://github.com/YourUsername/YourRepository.git](https://github.com/YourUsername/YourRepository.git)
+git clone [https://github.com/Miyawa-x/Auto_StuWifi](https://github.com/Miyawa-x/Auto_StuWifi)
 cd YourRepository
-cp srun_login.sh.example srun_login.sh
 
 ```
 
-Edit the `srun_login.sh` file. **Crucial: Use single quotes (`'`) for your username and password to prevent special character escaping!**
+Edit the `macos_bash_wifi.sh` file. 
 
 ```bash
-USERNAME='YourStudentID@stu'  # Must include the @stu suffix
+USERNAME='YourStudentID'  # Must include the @stu suffix
 PASSWORD='YourPassword'
 
 ```
@@ -63,7 +62,7 @@ chmod +x srun_login.sh
 
 #### 3. Automation (Optional but Recommended)
 
-You can wrap this script in a macOS **Shortcuts** app automation to trigger it silently whenever you connect to `XJTU-STUwifi`.
+You can wrap this script in a macOS **Shortcuts** app automation to trigger it silently whenever you connect to `STUwifi`.
 
 <a id="ios-guide-en"></a>
 
@@ -75,7 +74,7 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 
 ### 🛠 Troubleshooting
 
-* **`E2901: Authentication failed`**: Your password is wrong, or you forgot the `@stu` suffix in your username.
+* **`E2901: Authentication failed`**: Your password is wrong, or you forgot the suffix (e.g.`@stu`) in your username.
 * **`E2532: no_response_data_error`**: You requested too frequently. The script will automatically sleep for 10-12 seconds to let the gateway cool down.
 
 ---
@@ -84,24 +83,24 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 
 ## 🇨🇳 中文版
 
-专为西安交通大学 (XJTU-STUwifi) 打造的极速无感认证引擎。基于深澜 (SRun) 系统逆向工程，纯原生底层发包，彻底干掉恶心的弹窗，实现开盖即连的极致体验。
+专为大学 (XJTU-STUwifi) 打造的极速无感认证引擎。基于深澜 (SRun) 系统逆向工程，纯原生底层发包，彻底干掉恶心的弹窗，实现开盖即连的极致体验。
 
 ### 📑 目录 (中文)
 
-* [功能特性](https://www.google.com/search?q=%23features-zh)
-* [支持平台](https://www.google.com/search?q=%23platform-support-zh)
-* [macOS 使用指南](https://www.google.com/search?q=%23macos-guide-zh)
-* [iOS / iPadOS 使用指南](https://www.google.com/search?q=%23ios-guide-zh)
-* [常见问题排错](https://www.google.com/search?q=%23troubleshooting-zh)
+* [功能特性](#features-zh)
+* [支持平台](#platform-support-zh)
+* [macOS 使用指南](#macos-guide-zh)
+* [iOS / iPadOS 使用指南](#ios-guide-zh)
+* [常见问题排错](#troubleshooting-zh)
 
 <a id="features-zh"></a>
 
 ### ✨ 功能特性
 
 * **零依赖架构:** 纯 Bash + 系统原生 JXA 引擎驱动，无需安装 Node.js、Python 或任何第三方库。
-* **无情弹窗猎手 (Watchdog):** 建立后台无限循环守护进程，在苹果强制门户弹窗 (Captive Portal) 渲染出来的 0.1 秒内将其静默斩杀。
-* **动态雷达索敌:** 告别硬编码。自动扫描 `10.6.18.2`、`10.6.21.2` 等多网关节点，支持跨校区/楼栋的无缝漫游漫游。
-* **高容错狙击模式:** 针对深澜防刷盾 (E2532) 设计了弹性退避与外网隐性连通校验，告别盲目发包导致的死锁。
+* **无情弹窗猎手 (Watchdog):** 建立后台无限守护进程，在苹果强制门户弹窗 (Captive Portal) 渲染出来的 0.1 秒内将其静默关闭。
+* **动态IP雷达:** 告别硬编码。扫描 `10.6.18.2`、`10.6.21.2` 等多网关节点，支持跨校区/楼栋的无缝漫游漫游。
+* **高容错模式:** 针对深澜防刷盾 (E2532) 设计了弹性退避与外网隐性连通校验，告别盲目发包导致的死锁。
 
 <a id="platform-support-zh"></a>
 
@@ -122,12 +121,10 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 ```bash
 git clone [https://github.com/YourUsername/YourRepository.git](https://github.com/YourUsername/YourRepository.git)
 cd YourRepository
-cp srun_login.sh.example srun_login.sh
 
 ```
 
-打开 `srun_login.sh`，填入你的账号密码。
-**🚨 致命警告：请务必使用单引号（`'`），千万不要用双引号，否则密码中的特殊字符会被系统吃掉！账号务必带上 `@stu` 后缀！**
+打开 `macos_bash_wifi.sh`，填入你的账号密码。
 
 ```bash
 USERNAME='你的学号@stu' 
@@ -145,9 +142,9 @@ chmod +x srun_login.sh
 
 ```
 
-#### 3. 终极自动化部署（推荐）
+#### 3. 自动化部署（推荐）
 
-建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置触发条件为“当加入 XJTU-STUwifi 时”，即可享受 100% 物理无感的赛博体验。
+建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置触发条件为“当加入 XJTU-STUwifi 时”，即可无感体验。
 
 <a id="ios-guide-zh"></a>
 
