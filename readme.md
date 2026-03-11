@@ -83,7 +83,7 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 
 ## 🇨🇳 中文版
 
-专为大学 (XJTU-STUwifi) 打造的极速无感认证引擎。基于深澜 (SRun) 系统逆向工程，纯原生底层发包，彻底干掉恶心的弹窗，实现开盖即连的极致体验。
+专为大学 (STUwifi) 打造的极速无感认证引擎。基于深澜 (SRun) 系统逆向工程，纯原生底层发包，彻底干掉恶心的弹窗，实现开盖即连的极致体验。
 
 ### 📑 目录 (中文)
 
@@ -116,10 +116,10 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 
 #### 1. 基础配置
 
-克隆本仓库。为了防止你不小心把包含密码的脚本 push 到公开仓库，请务必使用模板复制一份你自己的私有脚本：
+克隆本仓库：
 
 ```bash
-git clone [https://github.com/YourUsername/YourRepository.git](https://github.com/YourUsername/YourRepository.git)
+git clone [https://github.com/Miyawa-x/Auto_StuWifi](https://github.com/Miyawa-x/Auto_StuWifi)
 cd YourRepository
 
 ```
@@ -144,24 +144,25 @@ chmod +x srun_login.sh
 
 #### 3. 自动化部署（推荐）
 
-建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置触发条件为“当加入 XJTU-STUwifi 时”，即可无感体验。
+建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置触发条件为“当加入 你的STUwifi 时”，即可无感体验。
 
 <a id="ios-guide-zh"></a>
 
 ### 📱 iOS / iPadOS 使用指南
 
-*全自动原生 iOS 方案正在开发中，将利用 Safari DOM 注入与快捷指令联动，敬请期待。*
+*全自动原生 iOS 方案正在开发中，利用 Safari DOM 注入与快捷指令联动，敬请期待。*
 
 <a id="troubleshooting-zh"></a>
 
 ### 🛠 常见问题排错
 
-* **提示 `E2901: Authentication failed**`: 账号或密码错误。请检查密码是否包含未转义字符，以及账号是否带了 `@stu`。
+* **提示 `E2901: Authentication failed**`: 账号或密码错误。请检查密码是否包含未转义字符，以及账号是否带了后缀，比如`@stu`。
 * **日志卡在 `触发频率护盾 (E2532)**`: 网关觉得你发包太快了。脚本已经内置了 12 秒的深度休眠，耐心等待其自动重试即可。
 * **提示 `zsh: command not found**`: 脚本必须运行在 `bash` 环境下。请确保你是通过 `./srun_login.sh` 或 `bash srun_login.sh` 执行，而不是使用 `sh` 命令。
 
 ---
 
-*Disclaimer: This project is for educational purposes only. Please comply with the network regulations of Xi'an Jiaotong University.*
-*免责声明: 本项目仅供网络协议学习与研究使用，请严格遵守西安交通大学校园网使用规范。*
+*Disclaimer: This project is for educational purposes only. Please comply with the network regulations of your university.*
+
+*免责声明: 本项目仅供网络协议学习与研究使用，请严格遵守校园网使用规范。*
 
