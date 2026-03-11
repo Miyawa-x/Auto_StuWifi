@@ -85,6 +85,8 @@ You can wrap this script in a macOS **Shortcuts** app automation to trigger it s
 
 专为大学 (STUwifi) 打造的极速无感认证引擎。基于深澜 (SRun) 系统逆向工程，纯原生底层发包，彻底干掉恶心的弹窗，实现开盖即连的极致体验。
 
+Bilibili教程开发中
+
 ### 📑 目录 (中文)
 
 * [功能特性](#features-zh)
