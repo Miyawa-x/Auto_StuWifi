@@ -190,7 +190,7 @@ chmod +x macos_bash_wifi.sh
 2. 复制本仓库中 [`ios_scriptable.js`](https://github.com/Miyawa-x/Auto_StuWifi/blob/main/ios_scriptable.js) 里的所有代码，粘贴到输入框内。
 3. **关键步骤：** 修改代码最顶部的账号密码配置：
    ```javascript
-   const USERNAME = "你的学号@stu"; // 务必带上后缀
+   const USERNAME = "你的NetID";
    const PASSWORD = "你的密码";
 
     ```
