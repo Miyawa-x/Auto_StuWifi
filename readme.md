@@ -193,7 +193,7 @@ chmod +x macos_bash_wifi.sh
    const USERNAME = "你的学号@stu"; // 务必带上后缀
    const PASSWORD = "你的密码";
 
-```
+    ```
 
 4. 点击顶部的标题可以给它重命名（比如 "校园网自动认证"），点击左上角 **Done** 保存。
 
