@@ -9,6 +9,8 @@ School_IP_list=("IP1" "IP2" "...")
 
 UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 
+sleep 5
+
 echo "================================================="
 echo "🎯 启动极速认证引擎 (最终解谜版)..."
 
