@@ -81,7 +81,7 @@ Download the free **Scriptable** app from the App Store.
    const USERNAME = "YourStudentID";
    const PASSWORD = "YourPassword";
 
-```
+    ```
 
 4. Tap the title at the top to rename it (e.g., "Auto_STUwifi"), then tap **Done** to save.
 
