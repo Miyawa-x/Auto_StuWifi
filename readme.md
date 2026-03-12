@@ -89,13 +89,15 @@ Download the free **Scriptable** app from the App Store.
 
 To make this run silently in the background every time you connect:
 
-1. Open the built-in **Shortcuts** app on your iPhone/iPad.
-2. Go to the **Automation** tab and tap `+` to create a new one.
-3. Scroll down and select **Wi-Fi**.
-4. Choose your campus network (e.g., `STUwifi`) for the Network.
-5. **CRITICAL:** Select **Run Immediately** (Do NOT choose "Run After Confirmation"), then tap Next.
-6. Search for **Scriptable** in the action list, select **Run Script**, and choose the script you just saved.
-7. Tap Done. You are all set!
+1. Open the built-in **Shortcuts** app on iOS.
+2. Tap the `+` icon in the top-right corner to create a new shortcut.
+3. In the actions list, search for **Scriptable** and select **Run Script**.
+4. Tap the translucent blue “Script” text and choose the script you just saved.
+5. Switch to the **Automation** tab at the bottom of the screen, then tap the `+` icon in the top-right corner.
+6. Scroll down, find and select **Wi-Fi**.
+7. For **Network**, select your campus Wi‑Fi name (e.g., `STUwifi`).
+8. Check **Run Immediately** at the bottom (**do NOT** select “Ask Before Running”), then tap Next.
+9. Under Actions, select the shortcut you just created, then tap Done.
 
 <a id="troubleshooting-en"></a>
 
