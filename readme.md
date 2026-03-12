@@ -182,12 +182,12 @@ chmod +x macos_bash_wifi.sh
 ### 📱 iOS / iPadOS 使用指南
 
 
-借助免费的 [Scriptable](https://scriptable.app/) 软件，我们在 iOS 沙盒环境中用纯 JavaScript 重写了整套深澜加密协议。配合苹果的快捷指令自动化，实现连上 Wi-Fi 瞬间自动认证。
+借助免费的 [Scriptable](https://scriptable.app/) 软件，我们在 iOS 沙盒环境中用纯 JavaScript 复刻了整套深澜加密协议。配合苹果的快捷指令自动化，实现连上 Wi-Fi 瞬间自动认证。
 
 #### 1. 环境准备
 前往 App Store 搜索并下载免费应用 **Scriptable**。
 
-#### 2. 注入灵魂 (配置代码)
+#### 2. 配置代码
 1. 打开 Scriptable，点击右上角的 `+` 号新建一个脚本。
 2. 复制本仓库中 [`ios_scriptable.js`](https://github.com/Miyawa-x/Auto_StuWifi/blob/main/ios_scriptable.js) 里的所有代码，粘贴到输入框内。
 3. **关键步骤：** 修改代码最顶部的账号密码配置：
