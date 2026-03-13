@@ -45,7 +45,7 @@ cd Auto_StuWifi
 Edit the `macos_bash_wifi.sh` file. 
 
 ```bash
-USERNAME='YourStudentID'  # Must include the @stu suffix
+USERNAME='YourStudentID'
 PASSWORD='YourPassword'
 
 ```
@@ -62,7 +62,7 @@ chmod +x macos_bash_wifi.sh
 
 #### 3. Automation (Optional but Recommended)
 
-You can wrap this script in a macOS **Shortcuts** app automation to trigger it silently whenever you connect to `STUwifi`.
+You can wrap this script in a macOS **Shortcuts** app to record your Keyboard ShortCut, or use "Automation"(MacOS 26 and above) to trigger it silently whenever you connect to `STUwifi`.
 
 <a id="ios-guide-en"></a>
 
@@ -175,7 +175,7 @@ chmod +x macos_bash_wifi.sh
 
 #### 3. 自动化部署（推荐）
 
-建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置触发条件为“当加入 你的STUwifi 时”，即可无感体验。
+建议将此脚本放入 macOS 自带的 **“快捷指令 (Shortcuts)”** 中，配置快捷键触发方式，或选择其中的“自动化”（需要MacOS 26 Tahoe 或更高版本），触发条件为“当加入你的STUwifi时”，即可无感体验。
 
 <a id="ios-guide-zh"></a>
 
