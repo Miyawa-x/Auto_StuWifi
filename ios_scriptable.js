@@ -1,9 +1,7 @@
-// ==========================================
 // 配置区
-// ==========================================
-const USERNAME = "你的网络账号";   // <--- 务必填入完整的NetID
+const USERNAME = "你的网络账号";   // <--- 填入NetID
 const PASSWORD = "你的密码";       // <--- 校园网密码
-const GW_LIST = ["IP1", "IP2"];   // <--- 校园网认证服务器的IP地址表
+const GW_LIST = ["IP1", "IP2"]; // <--- 活跃网关IP列表
 const MAX_RETRIES = 3;            // <--- 最大重试次数
 
 
@@ -77,7 +75,7 @@ function str2binb(str) { var bin = Array(), mask = (1 << chrsz) - 1; for (var i 
 function binl2hex(binarray) { var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef", str = ""; for (var i = 0; i < binarray.length * 4; i++) { str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF) + hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8)) & 0xF); } return str; }
 function binb2hex(binarray) { var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef", str = ""; for (var i = 0; i < binarray.length * 4; i++) { str += hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8 + 4)) & 0xF) + hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8)) & 0xF); } return str; }
 
-// Scriptable 休眠函数
+// Scriptable 原生休眠函数
 function sleep(ms) {
     return new Promise(resolve => {
         let t = new Timer();
@@ -88,13 +86,11 @@ function sleep(ms) {
     });
 }
 
-//main function
-
 async function main() {
+    let targetGw = null;
+
     for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
         console.log(`\n--- 🏹 第 ${attempt} 次探测与认证 ---`);
-
-        // [探针] 前置检测
 
         try {
             let captiveReq = new Request("http://captive.apple.com/hotspot-detect.html");
@@ -102,7 +98,7 @@ async function main() {
             let captiveRes = await captiveReq.loadString();
             if (captiveRes.includes("Success")) {
                 console.log("🎉 外网已打通，设备已在线，无需重复认证！");
-                if (attempt > 1) { // 仅当重试并成功后才发送通知
+                if (attempt > 1) {
                     let n = new Notification(); n.title = "网络已恢复通畅"; n.body = "已无感越过网关阻断"; n.schedule();
                 }
                 Script.complete();
@@ -112,7 +108,6 @@ async function main() {
             console.log("🔍 设备处于离线状态，准备启动雷达索敌...");
         }
 
-        let targetGw = null;
         for (let gw of GW_LIST) {
             try {
                 let probe = new Request(`http://${gw}`);
@@ -126,7 +121,7 @@ async function main() {
         if (!targetGw) {
             console.log("⚠️ 未发现可用网关，当前 Wi-Fi 物理连接可能尚未稳固");
             if (attempt < MAX_RETRIES) { await sleep(2000); continue; }
-            else { Script.complete(); return; }
+            else { break; }
         }
 
         const ts = Date.now() + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
@@ -144,7 +139,7 @@ async function main() {
         } catch (e) {
             console.log("⚠️ 获取 Token 接口超时或无响应。");
             if (attempt < MAX_RETRIES) { await sleep(2000); continue; }
-            else { Script.complete(); return; }
+            else { break; }
         }
 
         if (resChall.includes("top.self.location.href")) {
@@ -164,7 +159,7 @@ async function main() {
             } catch (e) {
                 console.log("⚠️ 二次请求获取 Token 超时。");
                 if (attempt < MAX_RETRIES) { await sleep(2000); continue; }
-                else { Script.complete(); return; }
+                else { break; }
             }
         }
 
@@ -172,10 +167,11 @@ async function main() {
         if (!tokenMatch) {
             console.log("⚠️ 无法解析 Token。返回内容:\n" + resChall);
             if (attempt < MAX_RETRIES) { await sleep(2000); continue; }
-            else { Script.complete(); return; }
+            else { break; }
         }
         let token = tokenMatch[1];
 
+        // 🌟 反向提取真实 IP，完美防止假死和签名错误
         if (!clientIp) {
             let jsonIpMatch = resChall.match(/"client_ip":"(.*?)"/);
             clientIp = jsonIpMatch ? jsonIpMatch[1] : "";
@@ -183,8 +179,6 @@ async function main() {
         }
 
         let ac_id = "1";
-
-        // [加密] 核心计算
 
         let hmd5 = hex_hmac_md5(token, PASSWORD);
         let infoObj = { username: USERNAME, password: PASSWORD, ip: clientIp, acid: ac_id, enc_ver: "srun_bx1" };
@@ -224,12 +218,37 @@ async function main() {
                 if (attempt < MAX_RETRIES) await sleep(2000);
             }
         } catch (e) {
-            console.log("⚠️ 发包超时。可能是 WAF 拦截或连接已放行，进入下一次循环探测探针。");
+            console.log("⚠️ 发包超时。可能是 WAF 拦截或连接已隐性放行。");
             if (attempt < MAX_RETRIES) await sleep(2000);
         }
     }
 
-    console.log("❌ 全部重试结束，依然未能成功。");
+    // ----------------------------------------------------
+    // [兜底] 最终物理网络探针校验与优雅降级
+    // ----------------------------------------------------
+    console.log("=================================================");
+    console.log("❌ 常规发包流程未能命中。正在启动最终网络连通性物理校验...");
+
+    try {
+        let finalCheck = new Request("http://captive.apple.com/hotspot-detect.html");
+        finalCheck.timeoutInterval = 3;
+        let finalRes = await finalCheck.loadString();
+
+        if (finalRes.includes("Success")) {
+            console.log("🎉 最终校验通过：网络已被隐性放行，无需唤起浏览器！");
+            let n = new Notification(); n.title = "网络已恢复通畅"; n.body = "已成功越过网关阻断"; n.schedule();
+            Script.complete();
+            return;
+        }
+    } catch (e) {
+        console.log("⚠️ 最终物理校验未通过，网络依然阻断。");
+    }
+
+    console.log("  [兜底] 准备唤起 Safari 浏览器进行手动认证...");
+    if (targetGw) {
+        Safari.open(`http://${targetGw}`);
+    }
+
     Script.complete();
 }
 
