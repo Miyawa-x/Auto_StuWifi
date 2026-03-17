@@ -105,6 +105,7 @@ To make this run silently in the background every time you connect:
 
 * **`E2901: Authentication failed`**: Your password is wrong, or you forgot the suffix (e.g.`@stu`) in your username.
 * **`E2532: no_response_data_error`**: You requested too frequently. The script will automatically sleep for 10-12 seconds to let the gateway cool down.
+* **`Frequent errors reported when running at computer startup`**: You can try adding a delay(usually 5 to 10 seconds) before "Run shell script" or "Scriptable", which will greatly enhance stability (Optional).
 
 ---
 
@@ -219,9 +220,10 @@ chmod +x macos_bash_wifi.sh
 
 ### 🛠 常见问题排错
 
-* **提示 `E2901: Authentication failed**`: 账号或密码错误。请检查密码是否包含未转义字符，以及账号是否带了后缀，比如`@stu`。
-* **日志卡在 `触发频率护盾 (E2532)**`: 网关觉得你发包太快了。脚本已经内置了 12 秒的深度休眠，耐心等待其自动重试即可。
-* **提示 `zsh: command not found**`: 脚本必须运行在 `bash` 环境下。请确保你是通过 `./srun_login.sh` 或 `bash srun_login.sh` 执行，而不是使用 `sh` 命令。
+* **提示 `E2901: Authentication failed`**: 账号或密码错误。请检查密码是否包含未转义字符，以及账号是否带了后缀，比如`@stu`。
+* **日志卡在 `触发频率护盾 (E2532)`**: 网关觉得你发包太快了。脚本已经内置了 12 秒的深度休眠，耐心等待其自动重试即可。
+* **提示 `zsh: command not found`**: 脚本必须运行在 `bash` 环境下。请确保你是通过 `./srun_login.sh` 或 `bash srun_login.sh` 执行，而不是使用 `sh` 命令。
+* **在开机时更容易无法连接**: 可以尝试在你的快捷指令运行代码前添加“等待”模块（5-10秒），这会极大提升程序稳定性。
 
 ---
 
